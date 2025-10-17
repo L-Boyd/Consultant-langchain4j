@@ -13,11 +13,11 @@ public class CommonConfig {
     @Autowired
     private OpenAiChatModel chatModel;
 
-    @Bean
+    /*@Bean
     public ConsultantService consultantService() {
         ConsultantService consultantService = AiServices.builder(ConsultantService.class) // 创建哪个接口的代理对象，就传哪个接口的类型
                 .chatModel(chatModel)
                 .build();
         return consultantService;
-    }
+    }*/
 }
