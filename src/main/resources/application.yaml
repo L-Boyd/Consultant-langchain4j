@@ -8,3 +8,8 @@ langchain4j:
       base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
       api-key: ${API-KEY}
       model-name: qwen-plus
+      log-requests: true
+      log-responses: true
+logging:
+  level: # ??????ERROR?INFO?DEBUG
+    dev.langchain4j: debug
