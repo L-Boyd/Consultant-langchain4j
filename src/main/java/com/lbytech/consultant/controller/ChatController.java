@@ -5,6 +5,7 @@ import dev.langchain4j.model.openai.OpenAiChatModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 
 @RestController
 public class ChatController {
@@ -24,6 +25,12 @@ public class ChatController {
     @RequestMapping("/chat2")
     public String chat2(String message) {
         String result = consultantService.chat(message);
+        return result;
+    }
+
+     @RequestMapping(value = "/chatFluxy", produces = "text/html;charset=UTF-8")    // produces解决乱码问题
+    public Flux<String> chatFluxy(String message) {
+        Flux<String> result = consultantService.chatFluxy(message);
         return result;
     }
 

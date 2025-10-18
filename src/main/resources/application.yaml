@@ -10,6 +10,12 @@ langchain4j:
       model-name: qwen-plus
       log-requests: true
       log-responses: true
+    streaming-chat-model: # 流式调用相关配置
+      base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
+      api-key: ${API-KEY}
+      model-name: qwen-plus
+      log-requests: true
+      log-responses: true
 logging:
-  level: # ??????ERROR?INFO?DEBUG
+  level: # 日志级别，有ERROR、INFO、DEBUG
     dev.langchain4j: debug
