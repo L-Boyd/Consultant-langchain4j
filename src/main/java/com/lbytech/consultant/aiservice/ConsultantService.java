@@ -25,7 +25,8 @@ public interface ConsultantService {
      * @param message
      * @return
      */
-    @SystemMessage("你是博哥的助理")
+    //@SystemMessage("你是博哥的助理")
+    @SystemMessage(fromResource = "static/system.txt")
     public Flux<String> chatFluxy(String message);
 
 }
