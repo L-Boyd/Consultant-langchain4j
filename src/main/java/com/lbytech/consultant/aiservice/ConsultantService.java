@@ -1,5 +1,6 @@
 package com.lbytech.consultant.aiservice;
 
+import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.spring.AiService;
 import dev.langchain4j.service.spring.AiServiceWiringMode;
 import reactor.core.publisher.Flux;
@@ -24,6 +25,7 @@ public interface ConsultantService {
      * @param message
      * @return
      */
+    @SystemMessage("你是博哥的助理")
     public Flux<String> chatFluxy(String message);
 
 }
