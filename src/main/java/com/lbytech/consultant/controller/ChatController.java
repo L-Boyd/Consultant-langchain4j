@@ -29,8 +29,8 @@ public class ChatController {
     }
 
      @RequestMapping(value = "/chatFluxy", produces = "text/html;charset=UTF-8")    // produces解决乱码问题
-    public Flux<String> chatFluxy(String message) {
-        Flux<String> result = consultantService.chatFluxy(message);
+    public Flux<String> chatFluxy(String memoryId, String message) {
+        Flux<String> result = consultantService.chatFluxy(memoryId, message);
         return result;
     }
 
