@@ -29,7 +29,7 @@ public interface ConsultantService {
      */
     //@SystemMessage("你是博哥的助理")
     @SystemMessage(fromResource = "static/system.txt")
-    @UserMessage("我是广东考生，一百个字介绍一下广东高考情况！然后回答：{{it}}") // 在用户信息前面拼接信息{{it}} 是占位符，会被message替换
+    //@UserMessage("我是广东考生，一百个字介绍一下广东高考情况！然后回答：{{it}}") // 在用户信息前面拼接信息{{it}} 是占位符，会被message替换
     public Flux<String> chatFluxy(String message);
 
 }
