@@ -9,7 +9,8 @@ import reactor.core.publisher.Flux;
 @AiService(
         wiringMode = AiServiceWiringMode.EXPLICIT,   // AiServices创建代理对象时，手动装配
         chatModel = "openAiChatModel", // langchain4j会自动往IOC容器里注入openAiChatModel（名字默认是首字母小写）
-        streamingChatModel = "openAiStreamingChatModel"
+        streamingChatModel = "openAiStreamingChatModel",
+        chatMemory = "chatMemory"   // 会话记忆对象
 )
 //@AiService  // 默认自动装配（创建代理对象时，自动去IOC容器里找chatModel）
 public interface ConsultantService {
