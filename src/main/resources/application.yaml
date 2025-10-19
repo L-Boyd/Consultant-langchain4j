@@ -1,6 +1,11 @@
 spring:
   application:
     name: Consultant
+  data:
+    redis:
+      host: 192.168.1.10
+      port: 6379
+      password: ${REDIS-PASSWORD}
 
 langchain4j:
   open-ai:
