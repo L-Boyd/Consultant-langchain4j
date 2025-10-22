@@ -66,7 +66,11 @@ public class CommonConfig {
     @Bean
     public EmbeddingStore embeddingStore2() {   // 如果叫embeddingStore就和引入的依赖自动注入的embeddingStore冲突了
         // 加载文档进内存
+        // FileSystemDocumentLoader:根据本地磁盘绝对路径加载
+        // ClassPathDocumentLoader:相对于类路径加载
+        // UrlDocumentLoader:根据url路径加载
         List<Document> documents = ClassPathDocumentLoader.loadDocuments("content");
+
         // 构建向量数据库操作对象
         InMemoryEmbeddingStore store = new InMemoryEmbeddingStore();
         // 构建一个EmbeddingStoreIngestor对象，完成文本数据切割，向量化，存储
