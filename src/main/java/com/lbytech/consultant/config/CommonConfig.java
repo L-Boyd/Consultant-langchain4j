@@ -74,7 +74,7 @@ public class CommonConfig {
     }
 
     // 构建向量数据库操作对象
-    @Bean
+    //@Bean // 把东西存到redis里后就可以注释掉，防止重复调用
     public EmbeddingStore embeddingStore2() {   // 如果叫embeddingStore就和引入的依赖自动注入的embeddingStore冲突了
         // 加载文档进内存
         // FileSystemDocumentLoader:根据本地磁盘绝对路径加载
