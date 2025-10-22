@@ -21,6 +21,12 @@ langchain4j:
       model-name: qwen-plus
       log-requests: true
       log-responses: true
+    embedding-model: # 向量模型
+      base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
+      api-key: ${API-KEY}
+      model-name: text-embedding-v3
+      log-requests: true
+      log-responses: true
 logging:
   level: # 日志级别，有ERROR、INFO、DEBUG
     dev.langchain4j: debug
