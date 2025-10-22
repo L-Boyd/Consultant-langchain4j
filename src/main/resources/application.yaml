@@ -27,6 +27,7 @@ langchain4j:
       model-name: text-embedding-v3
       log-requests: true
       log-responses: true
+      max-segments-per-batch: 10  # 每次调用最多处理10个片段（百炼的这个模型最高一次能接收十个）
 
   # docker run --name redis-vector -d -p 6400:6379 redislabs/redisearch
   # docker run --name redis-vector -d -p 6401:6379 redis/redis-stack:latest redis-server --requirepass xxxxxxx
