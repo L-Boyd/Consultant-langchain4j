@@ -3,6 +3,7 @@ package com.lbytech.consultant.config;
 import com.lbytech.consultant.aiservice.ConsultantService;
 import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.loader.ClassPathDocumentLoader;
+import dev.langchain4j.data.document.parser.apache.pdfbox.ApachePdfBoxDocumentParser;
 import dev.langchain4j.memory.ChatMemory;
 import dev.langchain4j.memory.chat.ChatMemoryProvider;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
@@ -69,7 +70,9 @@ public class CommonConfig {
         // FileSystemDocumentLoader:根据本地磁盘绝对路径加载
         // ClassPathDocumentLoader:相对于类路径加载
         // UrlDocumentLoader:根据url路径加载
-        List<Document> documents = ClassPathDocumentLoader.loadDocuments("content");
+        // TextDocumentParser:解析纯文本，ApachePdfBoxDucumentParser:解析pdf，ApachePoiDocumentParser:解析微软的所有office文件，ApacheTikaDocumentParser:默认，几乎可以解析所有格式
+        List<Document> documents = ClassPathDocumentLoader.loadDocuments("content", new ApachePdfBoxDocumentParser());
+
 
         // 构建向量数据库操作对象
         InMemoryEmbeddingStore store = new InMemoryEmbeddingStore();
