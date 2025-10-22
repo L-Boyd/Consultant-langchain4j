@@ -12,7 +12,8 @@ import reactor.core.publisher.Flux;
         chatModel = "openAiChatModel", // langchain4j会自动往IOC容器里注入openAiChatModel（名字默认是首字母小写）
         streamingChatModel = "openAiStreamingChatModel",
         //chatMemory = "chatMemory",   // 会话记忆对象
-        chatMemoryProvider = "chatMemoryProvider"   // 会话记忆对象提供者,解决所有用户共用记忆问题（完成记忆隔离）
+        chatMemoryProvider = "chatMemoryProvider" ,  // 会话记忆对象提供者,解决所有用户共用记忆问题（完成记忆隔离）
+        contentRetriever = "contentRetriever"   // 配置向量数据库检索对象
 )
 //@AiService  // 默认自动装配（创建代理对象时，自动去IOC容器里找chatModel）
 public interface ConsultantService {

@@ -7,6 +7,8 @@ import dev.langchain4j.memory.ChatMemory;
 import dev.langchain4j.memory.chat.ChatMemoryProvider;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.rag.content.retriever.ContentRetriever;
+import dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.EmbeddingStoreIngestor;
@@ -62,7 +64,7 @@ public class CommonConfig {
 
     // 构建向量数据库操作对象
     @Bean
-    public EmbeddingStore embeddingStore() {
+    public EmbeddingStore embeddingStore2() {   // 如果叫embeddingStore就和引入的依赖自动注入的embeddingStore冲突了
         // 加载文档进内存
         List<Document> documents = ClassPathDocumentLoader.loadDocuments("content");
         // 构建向量数据库操作对象
@@ -73,5 +75,15 @@ public class CommonConfig {
                 .build();
         ingestor.ingest(documents);
         return store;
+    }
+
+    // 构建向量数据库检索对象
+    @Bean
+    public ContentRetriever contentRetriever(EmbeddingStore embeddingStore2) {   // spring里要用IOC容器内的对象可以直接声明
+        return EmbeddingStoreContentRetriever.builder()
+                .embeddingStore(embeddingStore2)
+                .minScore(0.5)  // 最小的可选入的预选相似度值
+                .maxResults(3)  // 最多可查询出的片段
+                .build();
     }
 }
