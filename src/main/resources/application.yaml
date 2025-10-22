@@ -27,6 +27,16 @@ langchain4j:
       model-name: text-embedding-v3
       log-requests: true
       log-responses: true
+
+  # docker run --name redis-vector -d -p 6400:6379 redislabs/redisearch
+  # docker run --name redis-vector -d -p 6401:6379 redis/redis-stack:latest redis-server --requirepass xxxxxxx
+  # docker run --name redis-vector -d -p 6401:6379 redis/redis-stack:7.2.0-v19-arm64
+  # langchain4j-community-redis-spring-boot-starter会检测到这段配置，自动往IOC容器中注入RedisEmbeddingStore
+  community:
+    redis:
+      host: 192.168.1.10
+      port: 6401
+
 logging:
   level: # 日志级别，有ERROR、INFO、DEBUG
     dev.langchain4j: debug

@@ -86,6 +86,13 @@
             <version>1.0.1-beta6</version>
         </dependency>
 
+        <!--langchain4j对redis向量数据库的支持-->
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-community-redis-spring-boot-starter</artifactId>
+            <version>1.0.1-beta6</version>
+        </dependency>
+
     </dependencies>
 
     <build>

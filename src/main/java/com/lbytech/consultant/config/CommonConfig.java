@@ -1,6 +1,7 @@
 package com.lbytech.consultant.config;
 
 import com.lbytech.consultant.aiservice.ConsultantService;
+import dev.langchain4j.community.store.embedding.redis.RedisEmbeddingStore;
 import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.DocumentSplitter;
 import dev.langchain4j.data.document.loader.ClassPathDocumentLoader;
@@ -35,6 +36,9 @@ public class CommonConfig {
 
     @Autowired
     private EmbeddingModel embeddingModel;
+
+    @Autowired
+    private RedisEmbeddingStore redisEmbeddingStore;
 
     /*@Bean
     public ConsultantService consultantService() {
@@ -81,26 +85,27 @@ public class CommonConfig {
 
 
         // 构建向量数据库操作对象
-        InMemoryEmbeddingStore store = new InMemoryEmbeddingStore();
+        //InMemoryEmbeddingStore store = new InMemoryEmbeddingStore();
 
         // 构建文档分割器对象
         DocumentSplitter documentSplitter = DocumentSplitters.recursive(500, 100);// 每个片段最多字符，两个片段重复字符
 
         // 构建一个EmbeddingStoreIngestor对象，完成文本数据切割，向量化，存储
         EmbeddingStoreIngestor ingestor = EmbeddingStoreIngestor.builder()
-                .embeddingStore(store)
+                .embeddingStore(redisEmbeddingStore)
                 .documentSplitter(documentSplitter)
                 .embeddingModel(embeddingModel) // 向量模型
                 .build();
         ingestor.ingest(documents);
-        return store;
+        //return store;
+        return redisEmbeddingStore;
     }
 
     // 构建向量数据库检索对象
     @Bean
-    public ContentRetriever contentRetriever(EmbeddingStore embeddingStore2) {   // spring里要用IOC容器内的对象可以直接声明
+    public ContentRetriever contentRetriever(/*EmbeddingStore embeddingStore2*/) {   // spring里要用IOC容器内的对象可以直接声明
         return EmbeddingStoreContentRetriever.builder()
-                .embeddingStore(embeddingStore2)
+                .embeddingStore(redisEmbeddingStore)
                 .minScore(0.5)  // 最小的可选入的预选相似度值
                 .maxResults(3)  // 最多可查询出的片段
                 .embeddingModel(embeddingModel)
