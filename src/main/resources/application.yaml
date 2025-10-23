@@ -6,6 +6,12 @@ spring:
       host: 192.168.1.10
       port: 6379
       password: ${REDIS-PASSWORD}
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.1.10:3306/volunteer_consultant?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: ${MYSQL-PASSWORD}
+
 
 langchain4j:
   open-ai:
@@ -41,3 +47,7 @@ langchain4j:
 logging:
   level: # 日志级别，有ERROR、INFO、DEBUG
     dev.langchain4j: debug
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true  # 驼峰命名自动转换
