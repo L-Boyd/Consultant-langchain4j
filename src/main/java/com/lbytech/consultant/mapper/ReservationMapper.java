@@ -11,7 +11,7 @@ public interface ReservationMapper {
     /**
      * 添加预约信息
      */
-    @Insert("insert into reservation(name, gender, phone, communicatio_time, province, estimated_score) " +
+    @Insert("insert into reservation(name, gender, phone, communication_time, province, estimated_score) " +
             "values(#{name}, #{gender}, #{phone}, #{communicationTime}, #{province}, #{estimatedScore})")
     void insert(Reservation reservation);
 
